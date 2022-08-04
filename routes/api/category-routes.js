@@ -8,7 +8,10 @@ router.get('/', (req, res) => {
   Category.findAll({
     // be sure to include its associated Products
     include: [
-      
+      {
+        model: Product,
+        attributes: ['id','price','stock']
+      }
     ]
   })
     .then(dbUserData => res.json(dbUserData))
@@ -26,7 +29,10 @@ router.get('/:id', (req, res) => {
     },
   // be sure to include its associated Products
     include: [
-        
+      {
+        model: Product,
+        attributes: ['id','price','stock']
+      }
     ]
   })
   .then(dbUserData => {
