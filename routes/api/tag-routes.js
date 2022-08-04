@@ -65,12 +65,18 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
-  Tag.update({tag_name: req.body.tag_name}, {
+  Tag.update(req.body, {
     where: {
       id: req.params.id
     }
   })
-    .then(tagData => res.json(tagData))
+    .then(tagData => {
+      if (tagData[0] === 0) {res.json('No changes have been made')}
+      else { 
+        req.body['id'] = req.params.id;
+        res.json(req.body);
+      }
+    })
     .catch(err => {
       console.log(err);
       res.status(400).json(err);

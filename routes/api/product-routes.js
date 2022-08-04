@@ -15,11 +15,12 @@ router.get('/', (req, res) => {
       },
       {
         model: Tag,
-        attributes: []
+        attributes: ['id', 'tag_name'],
+        through: ProductTag
       }
     ]
   })
-    .then(dbUserData => res.json(dbUserData))
+    .then(productData => res.json(productData))
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
@@ -46,12 +47,12 @@ router.get('/:id', (req, res) => {
       }
     ]
   })
-    .then(dbUserData => {
-      if (!dbUserData) {
+    .then(productData => {
+      if (!productData) {
         res.status(404).json({ message: 'No product found with this id' });
         return;
       }
-      res.json(dbUserData);
+      res.json(productData);
     })
     .catch(err => {
       console.log(err);
@@ -107,7 +108,7 @@ router.put('/:id', (req, res) => {
       // get list of current tag_ids
       const productTagIds = productTags.map(({ tag_id }) => tag_id);
       // create filtered list of new tag_ids
-      const newProductTags = req.body.tagIds
+      const newProductTags = req.body.tag_ids
         .filter((tag_id) => !productTagIds.includes(tag_id))
         .map((tag_id) => {
           return {
@@ -117,7 +118,7 @@ router.put('/:id', (req, res) => {
         });
       // figure out which ones to remove
       const productTagsToRemove = productTags
-        .filter(({ tag_id }) => !req.body.tagIds.includes(tag_id))
+        .filter(({ tag_id }) => !req.body.tag_ids.includes(tag_id))
         .map(({ id }) => id);
 
       // run both actions
@@ -126,7 +127,9 @@ router.put('/:id', (req, res) => {
         ProductTag.bulkCreate(newProductTags),
       ]);
     })
-    .then((updatedProductTags) => res.json(updatedProductTags))
+    .then((updatedProductTags) => res.json({
+      updated_product: req.body,
+      updated_tags: updatedProductTags[1]}))
     .catch((err) => {
       // console.log(err);
       res.status(400).json(err);
@@ -140,12 +143,12 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   })
-    .then(dbUserData => {
-      if (!dbUserData) {
+    .then(productData => {
+      if (!productData) {
         res.status(404).json({ message: 'No product with this id' });
         return;
       }
-      res.json(dbUserData);
+      res.json(productData);
     })
     .catch(err => {
       console.log(err);
