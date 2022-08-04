@@ -9,7 +9,14 @@ router.get('/', (req, res) => {
   Product.findAll({
     // be sure to include its associated Category and Tag data
     include: [
+      {
+        model: Category,
+        attributes: ['id']
+      },
+      {
+        model: Tag,
 
+      }
     ]
   })
     .then(dbUserData => res.json(dbUserData))
@@ -28,7 +35,7 @@ router.get('/:id', (req, res) => {
     },
     // be sure to include its associated Category and Tag data
     include: [
-
+      
     ]
   })
     .then(dbUserData => {
