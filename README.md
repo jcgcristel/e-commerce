@@ -21,6 +21,7 @@ As there is no front-end, usage of an API Client will be needed to test this scr
 - mysql2
 
 To install:
+
     npm i sequelize express mysql2
 
 ### Database Requirements
