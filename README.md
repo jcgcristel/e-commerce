@@ -10,8 +10,7 @@ As there is no front-end, usage of an API Client will be needed to test this scr
 
 ## Table of Contents
 - [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
+- [Test](#Test)
 - [Question](#questions)
 
 ## Installation
