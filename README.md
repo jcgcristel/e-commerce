@@ -51,7 +51,7 @@ Back in the root directory of the script, we can proceed to populate the databas
 And with that, you're done! You can now send requests to the server.
 
 ### Demo
-[TO BE ADDED]
+https://youtu.be/romD_LKhBy0
 
 ## Questions
 [jcgcristel's GitHub](https://github.com/jcgcristel)
