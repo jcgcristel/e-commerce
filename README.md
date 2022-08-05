@@ -1,6 +1,12 @@
 # e-commerce back end
 
 ## Description
+Back end script for e-commerce that handles creating, updating, and deleting:
+- Products
+- Tags
+- Categories
+
+As there is no front-end, usage of an API Client will be needed to test and see the program.
 
 ## Table of Contents
 - [Installation](#installation)
@@ -10,21 +16,30 @@
 
 ## Installation
 
-
 ### Required Packages
+- sequelize
+- express
 
+To install:
+    npm i sequelize express
 
 ### Database Requirements
+With Sequelize, an empty database named **ecommerce_db** is all that is needed.
 
+It will create the following tables:
+- category
+- product
+- product_tag
+- tag
 
-## Usage
+## Test
+To demo, go ahead and run the following command:
+    npm run seed
 
-
-### Application Screenshot
-![App Preview](/images/app-prev.png)
+The seed will provide you dummy data.
 
 ### Demo
-https://youtu.be/p6_v6L83KeM 
+[TO BE ADDED]
 
 ## Questions
 [jcgcristel's GitHub](https://github.com/jcgcristel)
