@@ -91,11 +91,11 @@ router.delete('/:id', (req, res) => {
     }
   })
     .then(categoryData => {
-      if (!categoryData[0]) {
+      if (!categoryData) {
         res.status(404).json({ message: 'No category found with this id' });
         return;
       }
-      res.json(categoryData);
+      res.json(`request: 'delete', id: req.params.id`);
     })
     .catch(err => {
       console.log(err);
