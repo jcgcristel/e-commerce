@@ -25,7 +25,7 @@ To install:
     npm i sequelize express mysql2
 
 ### Database Requirements
-With Sequelize, an empty database named **ecommerce_db** is all that is needed.
+With Sequelize, an empty database named ```ecommerce_db``` is all that is needed.
 
 It will create the following tables:
 - category
